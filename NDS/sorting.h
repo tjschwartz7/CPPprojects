@@ -10,8 +10,9 @@ public:
 	void InsertionSort(int a[], int n);
 	void ShellSort(int a[], int n);
 	void InsertionSortInterleaved(int *a, int n, int start, int gap);
-	void Quicksort();
-	void Partition(int* a, int low, int high);
+	void Quicksort(int a[], int size);
+	void Quicksort(int a[], int low, int high);
+	int Partition(int* a, int low, int high);
 };
 
 

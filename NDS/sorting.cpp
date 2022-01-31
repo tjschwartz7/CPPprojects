@@ -126,3 +126,54 @@ void Sorts::InsertionSortInterleaved(int *a, int n, int start, int gap) {
 	}
 
 }
+
+void Sorts::Quicksort(int a[], int n) {
+	//PrintArr(a, n);
+	cout << "Quicksort: " << endl;
+	auto t0 = system_clock::now();
+	Quicksort(a, 0, n - 1);
+	auto t1 = system_clock::now();
+	duration<double> elapsed_seconds = t1 - t0;
+	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	//PrintArr(a, n);
+}
+
+void Sorts::Quicksort(int a[], int low, int high) {
+	if (low >= high) {
+		return;
+	}
+	int lowEndIndex = Partition(a, low, high);
+	Quicksort(a, low, lowEndIndex);
+	Quicksort(a, lowEndIndex + 1, high);
+
+}
+
+int Sorts::Partition(int* a, int low, int high) {
+	int midpoint = low + (high - low) / 2;
+	int pivot = a[midpoint];
+	bool done = false;
+	while (!done) {
+		while (a[low] < pivot) {
+			low += 1;
+		}
+		while (pivot < a[high]) {
+			high -= 1;
+		}
+
+		//if zero or one elements remain, then all numbers are partitioned.
+		//Return highindex.
+		if (low >= high) {
+			done = true;
+		}
+		else {
+			//swap 
+			int temp = a[low];
+			a[low] = a[high];
+			a[high] = temp;
+
+			low++;
+			high--;
+		}
+	}
+	return high;
+}
