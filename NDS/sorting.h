@@ -8,6 +8,10 @@ public:
 	void SelectionSort(int a[], int n);
 	void BubbleSort(int a[], int n);
 	void InsertionSort(int a[], int n);
+	void ShellSort(int a[], int n);
+	void InsertionSortInterleaved(int *a, int n, int start, int gap);
+	void Quicksort();
+	void Partition(int* a, int low, int high);
 };
 
 

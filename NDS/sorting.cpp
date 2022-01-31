@@ -16,8 +16,9 @@ void Sorts::FillArr(int *a, int n) {
 	}
 }
 
-
+//O(N^2)
 void Sorts::SelectionSort(int a[], int n) {
+	//PrintArr(a, n);
 	auto t0 = system_clock::now();
 	cout << "Selection Sort: " << endl;
 	int smallestIndex;
@@ -40,7 +41,9 @@ void Sorts::SelectionSort(int a[], int n) {
 
 //this is a slightly more efficient version of bubblesort, which ends when it iterates through the
 //array once without any swaps occurring. Usually, it is best and worst case O(N^2), as it uses two for loops i < size and j < size
+//O(N^2)
 void Sorts::BubbleSort(int a[], int n) {
+	//PrintArr(a, n);
 	auto t0 = system_clock::now();
 	cout << "Bubble Sort: " << endl;
 	for (int i = 0; i < n; i++) {
@@ -62,7 +65,10 @@ void Sorts::BubbleSort(int a[], int n) {
 
 }
 
+
+//O((N-1)*(N/2))
 void Sorts::InsertionSort(int a[], int n) {
+	//PrintArr(a, n);
 	cout << "Insertion Sort: " << endl;
 	auto t0 = system_clock::now();
 	for (int i = 1; i < n; i++) {
@@ -78,4 +84,45 @@ void Sorts::InsertionSort(int a[], int n) {
 	duration<double> elapsed_seconds = t1 - t0;
 	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
 	//PrintArr(a, n);
+}
+
+void Sorts::ShellSort(int a[], int n) {
+	//PrintArr(a, n);
+	cout << "Shell Sort: " << endl;
+	auto t0 = system_clock::now();
+
+	//Call insertion sort divvied between 3 different arrays each having size n / gap
+	//Since insertion sort is faster on smaller lists, this will end up faster than your standard insertion sort
+	int exp = floor(log2(n));
+	int gap;
+	for (int i = exp; i > 0; i--) {
+		gap = pow(2, i) - 1;
+		for (int i = 0; i < gap; i++) {
+			InsertionSortInterleaved(a, n, i, gap);
+		}
+
+	}
+
+
+	//This is essentially a standard insertion sort
+	InsertionSortInterleaved(a, n, 0, 1);
+
+	auto t1 = system_clock::now();
+	duration<double> elapsed_seconds = t1 - t0;
+	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	//PrintArr(a, n);
+}
+
+void Sorts::InsertionSortInterleaved(int *a, int n, int start, int gap) {
+	int temp = 0;
+	for (int i = start+gap; i < n; i+=gap) {
+		int j = i;
+		while (j - gap > start && a[j] < a[j - gap]) {
+			int temp = a[j];
+			a[j] = a[j - 1];
+			a[j - gap] = temp;
+			j-=gap;
+		}
+	}
+
 }

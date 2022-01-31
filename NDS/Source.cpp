@@ -23,13 +23,21 @@ int main() {
 	cout << setw(6) << setfill('.') << str << endl;
 
 	Sorts sort;
-	const int size = 1e4;
+	const int size = 5e3;
 	int arr[size];
 	sort.FillArr(arr, size);
-	
-	sort.SelectionSort(arr, size);
-	sort.BubbleSort(arr, size);
-	sort.InsertionSort(arr, size);
+	int arr1[size];
+	int arr2[size];
+	int arr3[size];
+	int arr4[size];
+	copy(begin(arr), end(arr), begin(arr1));
+	copy(begin(arr), end(arr), begin(arr2));
+	copy(begin(arr), end(arr), begin(arr3));
+	copy(begin(arr), end(arr), begin(arr4));
+	sort.SelectionSort(arr1, size);
+	sort.BubbleSort(arr2, size);
+	sort.InsertionSort(arr3, size);
+	sort.ShellSort(arr4, size);
 
 	return 0;
 }
