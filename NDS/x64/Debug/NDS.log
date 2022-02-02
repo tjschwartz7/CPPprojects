@@ -1,3 +1,6 @@
-﻿  Source.cpp
-C:\Users\tjsch\source\repos\NDS\NDS\Source.cpp(28,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+﻿  sorting.cpp
+C:\Users\tjsch\source\repos\NDS\NDS\sorting.cpp(14,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\tjsch\source\repos\NDS\NDS\sorting.cpp(97,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\tjsch\source\repos\NDS\NDS\sorting.cpp(100,19): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\tjsch\source\repos\NDS\NDS\sorting.cpp(306,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   NDS.vcxproj -> C:\Users\tjsch\source\repos\NDS\x64\Debug\NDS.exe

@@ -11,16 +11,17 @@ void Sorts::PrintArr(int a[], int n) {
 }
 
 void Sorts::FillArr(int *a, int n) {
+	srand(time(NULL));
 	for (int i = 0; i < n; i++) {
-		a[i] = rand();
+		a[i] = rand() % rand();
 	}
 }
 
 //O(N^2)
 void Sorts::SelectionSort(int a[], int n) {
 	//PrintArr(a, n);
-	auto t0 = system_clock::now();
 	cout << "Selection Sort: " << endl;
+	auto t0 = system_clock::now();
 	int smallestIndex;
 	for (int i = 0; i < n; i++) {
 		smallestIndex = i;
@@ -44,8 +45,8 @@ void Sorts::SelectionSort(int a[], int n) {
 //O(N^2)
 void Sorts::BubbleSort(int a[], int n) {
 	//PrintArr(a, n);
-	auto t0 = system_clock::now();
 	cout << "Bubble Sort: " << endl;
+	auto t0 = system_clock::now();
 	for (int i = 0; i < n; i++) {
 		for (int j = 1; j < n; j++) {
 			if (a[j] < a[j - 1]) {
@@ -175,5 +176,150 @@ int Sorts::Partition(int* a, int low, int high) {
 			high--;
 		}
 	}
+	//PrintArr(a, high+1);
 	return high;
+}
+
+//this is the base recursive function for quickselect
+int Sorts::Quickselect(int *a, int first, int last, int k) {
+	if (first >= last)
+		return a[first];
+	int lowLastIndex = Partition(a, first, last);
+
+	if (k <= lowLastIndex)
+		return Quickselect(a, first, lowLastIndex, k);
+	return Quickselect(a, lowLastIndex + 1, last, k);
+
+}
+
+
+//This is the same as calling quicksort and returning index of k
+//BUT this is actually faster since it is not required to sort the entire list - it could sort only a portion and get its answer
+//also- this function is the version of quickselect to be called externally - it contains the output data and timer
+void Sorts::Quickselect(int a[], int n, int k) {
+	//PrintArr(a, n);
+	cout << "Quickselect: " << endl;
+	auto t0 = system_clock::now();
+	int out = Quickselect(a, 0, n - 1, k);
+	auto t1 = system_clock::now();
+	duration<double> elapsed_seconds = t1 - t0;
+	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	cout << "Smallest kth number at k = " << k << ": " << " : Number = " << out << endl;
+}
+
+void Sorts::Quicksortselect(int a[], int n, int k) {
+	//PrintArr(a, n);
+	cout << "Quicksortselect: " << endl;
+	auto t0 = system_clock::now();
+	Quicksort(a, 0, n - 1);
+	auto t1 = system_clock::now();
+	duration<double> elapsed_seconds = t1 - t0;
+	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	cout << "Smallest kth number at k = " << k << ": " << " : Number = " << a[k] << endl;
+}
+
+void Sorts::Mergesort(int a[], int i, int k) {
+	int j = 0;
+	if (i < k) {
+		j = (i + k) / 2;
+		Mergesort(a, i, j);
+		Mergesort(a, j + 1, k);
+
+		Merge(a, i, j, k);
+	}
+}
+
+void Sorts::Merge(int* a, int i, int j, int k) {
+	//PrintArr(a, k);
+	int mergedSize = k - i + 1;
+	int mergePos = 0;
+	int leftPos = 0;
+	int rightPos = 0;
+	int *mergedNumbers = new int[mergedSize];
+	leftPos = i;
+	rightPos = j + 1;
+	while (leftPos <= j && rightPos <= k) {
+		if (a[leftPos] <= a[rightPos]) {
+			mergedNumbers[mergePos] = a[leftPos];
+			++leftPos;
+		}
+		else {
+			mergedNumbers[mergePos] = a[rightPos];
+			++rightPos;
+		}
+		++mergePos;
+	}
+
+	//if left partition is not empty, add remaining elements to merged nums
+	while (leftPos <= j) {
+		mergedNumbers[mergePos] = a[leftPos];
+		++leftPos;
+		++mergePos;
+	}
+
+	//if right partition is not empty, add remaining elements to merged nums
+	while (rightPos <= k) {
+		mergedNumbers[mergePos] = a[rightPos];
+		++rightPos;
+		++mergePos;
+	}
+
+	//copy merge numbers back to numbers
+	for (mergePos = 0; mergePos < mergedSize; ++mergePos) {
+		a[i + mergePos] = mergedNumbers[mergePos];
+	}
+
+}
+
+void Sorts::Mergesort(int a[], int n) {
+	//PrintArr(a, n);
+	cout << "Mergesort: " << endl;
+	auto t0 = system_clock::now();
+	Mergesort(a, 0, n - 1);
+	auto t1 = system_clock::now();
+	duration<double> elapsed_seconds = t1 - t0;
+	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	//PrintArr(a, n);
+}
+
+//just passing int a[] is not passing an array
+//its actually just passing a pointer int *a;
+//I used this solution to force it to act like an array
+void Sorts::Bucketsort(int a[], int n, int numBuckets) {
+	PrintArr(a, n);
+	cout << "Bucket Sort: " << endl;
+	auto t0 = system_clock::now();
+	if (n < 1) {
+		return;
+	}
+
+	vector<vector<int>> buckets(numBuckets);
+	int max = a[0];
+	for (int i = 1; i < n; i++) {
+		if (a[i] > max)
+			max = a[i];
+	}
+
+	//put each num in a bucket
+
+	for (int i = 0; i < n; i++) {
+		int index = floor(i * numBuckets / (max + 1));
+		buckets[index].push_back(a[i]);
+	}
+
+	//sort buckets
+	for (vector<int> bucket : buckets)
+		sort(bucket.begin(), bucket.end());
+
+	//combine the buckets
+	vector<int> result(n);
+	for (int i = 0; i < numBuckets; i++)
+		result.insert(result.begin(), buckets[i].begin(), buckets[i].end());
+
+	auto t1 = system_clock::now();
+	duration<double> elapsed_seconds = t1 - t0;
+	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+
+	for (int out : result)
+		cout << out << " ";
 }

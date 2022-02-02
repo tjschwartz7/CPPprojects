@@ -25,25 +25,40 @@ int main() {
 
 
 	Sorts sort;
-	const int size = 3.45e4;
+	const int size = 1e1;
 	int arr[size];
 	sort.FillArr(arr, size);
+	
 	int arr1[size];
 	int arr2[size];
 	int arr3[size];
 	int arr4[size];
 	int arr5[size];
+	int arr6[size];
+	int arr7[size];
+	int arr8[size];
+	int arr9[size];
 	copy(begin(arr), end(arr), begin(arr1));
 	copy(begin(arr), end(arr), begin(arr2));
 	copy(begin(arr), end(arr), begin(arr3));
 	copy(begin(arr), end(arr), begin(arr4));
 	copy(begin(arr), end(arr), begin(arr5));
+	copy(begin(arr), end(arr), begin(arr6));
+	copy(begin(arr), end(arr), begin(arr7));
+	copy(begin(arr), end(arr), begin(arr8));
+	copy(begin(arr), end(arr), begin(arr9));
 	sort.SelectionSort(arr1, size);
 	sort.BubbleSort(arr2, size);
 	sort.InsertionSort(arr3, size);
 	sort.ShellSort(arr4, size);
 	sort.Quicksort(arr5, size);
+	int k = 5;
+	sort.Quickselect(arr6, size, k);
 
+	//notice that quicksortselect is generally slower than quickselect
+	sort.Quicksortselect(arr7, size, k);
+	sort.Mergesort(arr8, size);
+	sort.Bucketsort(arr9, size, 10);
 	return 0;
 }
 
