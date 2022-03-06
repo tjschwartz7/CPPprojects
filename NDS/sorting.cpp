@@ -2,12 +2,15 @@
 #include "stdin.h"
 #include <chrono>
 using namespace std::chrono;
+#include <vector>
+//Gives us the vector sort function
+#include <algorithm>
 
 void Sorts::PrintArr(int a[], int n) {
 	for (int i = 0; i < n; i++) {
-		cout << a[i] << " ";
+		std::cout << a[i] << " ";
 	}
-	cout << endl;
+	std::cout << std::endl;
 }
 
 void Sorts::FillArr(int *a, int n) {
@@ -20,7 +23,7 @@ void Sorts::FillArr(int *a, int n) {
 //O(N^2)
 void Sorts::SelectionSort(int a[], int n) {
 	//PrintArr(a, n);
-	cout << "Selection Sort: " << endl;
+	std::cout << "Selection Sort: " << std::endl;
 	auto t0 = system_clock::now();
 	int smallestIndex;
 	for (int i = 0; i < n; i++) {
@@ -35,7 +38,7 @@ void Sorts::SelectionSort(int a[], int n) {
 	}
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
 
 	//PrintArr(a, n);
 }
@@ -45,7 +48,7 @@ void Sorts::SelectionSort(int a[], int n) {
 //O(N^2)
 void Sorts::BubbleSort(int a[], int n) {
 	//PrintArr(a, n);
-	cout << "Bubble Sort: " << endl;
+	std::cout << "Bubble Sort: " << std::endl;
 	auto t0 = system_clock::now();
 	for (int i = 0; i < n; i++) {
 		for (int j = 1; j < n; j++) {
@@ -60,7 +63,7 @@ void Sorts::BubbleSort(int a[], int n) {
 
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
 
 	//PrintArr(a, n);
 
@@ -70,7 +73,7 @@ void Sorts::BubbleSort(int a[], int n) {
 //O((N-1)*(N/2))
 void Sorts::InsertionSort(int a[], int n) {
 	//PrintArr(a, n);
-	cout << "Insertion Sort: " << endl;
+	std::cout << "Insertion Sort: " << std::endl;
 	auto t0 = system_clock::now();
 	for (int i = 1; i < n; i++) {
 		int j = i;
@@ -83,13 +86,13 @@ void Sorts::InsertionSort(int a[], int n) {
 	}
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
 	//PrintArr(a, n);
 }
 
 void Sorts::ShellSort(int a[], int n) {
 	//PrintArr(a, n);
-	cout << "Shell Sort: " << endl;
+	std::cout << "Shell Sort: " << std::endl;
 	auto t0 = system_clock::now();
 
 	//Call insertion sort divvied between 3 different arrays each having size n / gap
@@ -110,7 +113,7 @@ void Sorts::ShellSort(int a[], int n) {
 
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
 	//PrintArr(a, n);
 }
 
@@ -130,13 +133,13 @@ void Sorts::InsertionSortInterleaved(int *a, int n, int start, int gap) {
 
 void Sorts::Quicksort(int a[], int n) {
 	//PrintArr(a, n);
-	cout << "Quicksort: " << endl;
+	std::cout << "Quicksort: " << std::endl;
 	auto t0 = system_clock::now();
 	Quicksort(a, 0, n - 1);
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
-	//PrintArr(a, n);
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
+	PrintArr(a, n);
 }
 
 void Sorts::Quicksort(int a[], int low, int high) {
@@ -176,6 +179,8 @@ int Sorts::Partition(int* a, int low, int high) {
 			high--;
 		}
 	}
+	PrintArr(a, high);
+	PrintArr(a, low);
 	//PrintArr(a, high+1);
 	return high;
 }
@@ -198,24 +203,24 @@ int Sorts::Quickselect(int *a, int first, int last, int k) {
 //also- this function is the version of quickselect to be called externally - it contains the output data and timer
 void Sorts::Quickselect(int a[], int n, int k) {
 	//PrintArr(a, n);
-	cout << "Quickselect: " << endl;
+	std::cout << "Quickselect: " << std::endl;
 	auto t0 = system_clock::now();
 	int out = Quickselect(a, 0, n - 1, k);
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
-	cout << "Smallest kth number at k = " << k << ": " << " : Number = " << out << endl;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
+	std::cout << "Smallest kth number at k = " << k << ": " << " : Number = " << out << std::endl;
 }
 
 void Sorts::Quicksortselect(int a[], int n, int k) {
 	//PrintArr(a, n);
-	cout << "Quicksortselect: " << endl;
+	std::cout << "Quicksortselect: " << std::endl;
 	auto t0 = system_clock::now();
 	Quicksort(a, 0, n - 1);
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
-	cout << "Smallest kth number at k = " << k << ": " << " : Number = " << a[k] << endl;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
+	std::cout << "Smallest kth number at k = " << k << ": " << " : Number = " << a[k] << std::endl;
 }
 
 void Sorts::Mergesort(int a[], int i, int k) {
@@ -273,27 +278,28 @@ void Sorts::Merge(int* a, int i, int j, int k) {
 
 void Sorts::Mergesort(int a[], int n) {
 	//PrintArr(a, n);
-	cout << "Mergesort: " << endl;
+	std::cout << "Mergesort: " << std::endl;
 	auto t0 = system_clock::now();
 	Mergesort(a, 0, n - 1);
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
 	//PrintArr(a, n);
 }
+
 
 //just passing int a[] is not passing an array
 //its actually just passing a pointer int *a;
 //I used this solution to force it to act like an array
 void Sorts::Bucketsort(int a[], int n, int numBuckets) {
 	PrintArr(a, n);
-	cout << "Bucket Sort: " << endl;
+	std::cout << "Bucket Sort: " << std::endl;
 	auto t0 = system_clock::now();
 	if (n < 1) {
 		return;
 	}
 
-	vector<vector<int>> buckets(numBuckets);
+	std::vector<std::vector<int>> buckets(numBuckets);
 	int max = a[0];
 	for (int i = 1; i < n; i++) {
 		if (a[i] > max)
@@ -308,18 +314,18 @@ void Sorts::Bucketsort(int a[], int n, int numBuckets) {
 	}
 
 	//sort buckets
-	for (vector<int> bucket : buckets)
+	for (std::vector<int> bucket : buckets)
 		sort(bucket.begin(), bucket.end());
 
 	//combine the buckets
-	vector<int> result(n);
+	std::vector<int> result(n);
 	for (int i = 0; i < numBuckets; i++)
 		result.insert(result.begin(), buckets[i].begin(), buckets[i].end());
 
 	auto t1 = system_clock::now();
 	duration<double> elapsed_seconds = t1 - t0;
-	cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << std::endl;
 
 	for (int out : result)
-		cout << out << " ";
+		std::cout << out << " ";
 }
