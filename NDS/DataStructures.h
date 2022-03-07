@@ -1,16 +1,17 @@
 #ifndef DATASTRUCTURES_H
 #define DATASTRUCTURES_H
 
-const int SIZE = 26;
+const int SIZE = 27;
 #include <string>
 
 class TrieNode {
 
 public:
 	TrieNode* children[SIZE];
-	char letter;
+	std::string word;
+	//char letter;
 	int weight;
-	TrieNode(int index);
+	TrieNode(std::string s);
 	TrieNode();
 	~TrieNode() {}
 };
@@ -21,7 +22,9 @@ public:
 
 	TrieNode* insert(TrieNode* root, std::string s);
 	TrieNode* search(TrieNode* root, std::string s);
-
+	void printTrie();
+	void printChild(TrieNode* node);
+	std::string weightPriority(std::string s);
 	Trie() { root = new TrieNode(); }
 private:
 };

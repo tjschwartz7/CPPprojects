@@ -32,10 +32,24 @@ int main() {
 
 	Trie* tr = new Trie();
 	tr->insert(tr->root, "Apple");
+	std::cout << std::endl;
 	tr->insert(tr->root, "Apply");
+	tr->insert(tr->root, "Applying");
+	tr->insert(tr->root, "Applies");
 	tr->insert(tr->root, "Please");
-	std::cout<<tr->insert(tr->root, "Yolo")->letter<<std::endl;
-	std::cout << tr->search(tr->root, "Yolo")->weight << std::endl;
+	tr->insert(tr->root, "Pleasing");
+	tr->insert(tr->root, "Jump");
+	tr->insert(tr->root, "Jumping");
+	tr->insert(tr->root, "Jumps");
+	std::cout<<tr->insert(tr->root, "Yolo")->word<<std::endl;
+	std::cout << tr->search(tr->root, "Applying")->weight << std::endl;
+	std::cout << tr->search(tr->root, "Applying")->weight << std::endl;
+	std::cout << tr->search(tr->root, "Apply")->weight << std::endl;
+	std::cout << std::endl;
+	tr->printTrie();
+
+	//Returns "Applying" with weight=6
+	std::cout << std::endl << tr->weightPriority("Appl") << std::endl;
 	return 0;
 }
 
