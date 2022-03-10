@@ -27,6 +27,9 @@
     <ClCompile Include="autocompletion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="searchbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sorting.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="autocompletion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="searchbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

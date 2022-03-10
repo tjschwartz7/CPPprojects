@@ -33,7 +33,7 @@ TrieNode* Trie::insert(TrieNode* root, std::string s) {
 	TrieNode* node = root;
 	std::string curString = "";
 		for (char c : s) {
-			curString += c;
+			curString += tolower(c);
 			int index = toupper(c) - ('A'-1);
 			if (index <= 26 && node->children[index] == nullptr) {
 				node->children[index] = new TrieNode(curString);
@@ -72,8 +72,8 @@ void Trie::printTrie() {
 
 void Trie::printChild(TrieNode* node) {
 	if ((node->children[0] != nullptr)) {
-		std::cout << "Weight: " << node->children[0]->weight;
-		std::cout << " Word: " << node->word << " " << std::endl;
+		//std::cout << "Weight: " << node->children[0]->weight;
+		std::cout << node->word << std::endl;
 	}
 
 	for (int i = 0; i <= 26; i++) {
@@ -82,7 +82,7 @@ void Trie::printChild(TrieNode* node) {
 	return;
 }
 
-TrieNode* getMaxWeight(TrieNode* node, TrieNode *maxWeight) {
+TrieNode* Trie::getMaxWeight(TrieNode* node, TrieNode *maxWeight) {
 	//std::cout << "Max-weight word before: " << node->word << std::endl;
 	if ((node->children[0] != nullptr) && node->children[0]->weight >= maxWeight->weight) {
 		maxWeight->weight = node->children[0]->weight;
@@ -98,7 +98,7 @@ TrieNode* getMaxWeight(TrieNode* node, TrieNode *maxWeight) {
 }
 
 
-TrieNode* findStringNode(TrieNode* root, std::string s) {
+TrieNode* Trie::findStringNode(TrieNode* root, std::string s) {
 	TrieNode* node = root;
 	//std::cout << "root->word" << root->word << std::endl;
 	for (char c : s) {
@@ -108,9 +108,13 @@ TrieNode* findStringNode(TrieNode* root, std::string s) {
 			return nullptr;
 		}
 		node = node->children[index];
-		//Node->word = "old" and s = "o"
 		//std::cout << "Node->word " << node->word << " " << s << " where index= " << index << std::endl;
-		if (node->word == s) return node;
+		std::string lower1 = s;
+		for (int i = 0; i < s.size(); i++) {
+			lower1[i] = tolower(lower1[i]);
+		}
+
+		if (lower1 == node->word) return node;
 	}
 	return nullptr;
 }
@@ -125,4 +129,9 @@ std::string Trie::weightPriority(std::string s) {
 
 	return cur->word;
 
+}
+
+void Trie::printFromNode(TrieNode* node) {
+	TrieNode* cur = node;
+	printChild(cur);
 }

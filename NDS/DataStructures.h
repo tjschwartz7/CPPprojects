@@ -25,6 +25,9 @@ public:
 	void printTrie();
 	void printChild(TrieNode* node);
 	std::string weightPriority(std::string s);
+	TrieNode* findStringNode(TrieNode* root, std::string s);
+	TrieNode* getMaxWeight(TrieNode* node, TrieNode* maxWeight);
+	void printFromNode(TrieNode* node);
 	Trie() { root = new TrieNode(); }
 private:
 };

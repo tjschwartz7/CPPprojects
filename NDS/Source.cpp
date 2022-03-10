@@ -2,6 +2,7 @@
 #include "sorting.h"
 #include "DataStructures.h"
 #include "autocompletion.h"
+#include "searchbar.h"
 
 int main() {
 	/*cout << setw(10) << left << "Dog Age" << "|";
@@ -52,8 +53,9 @@ int main() {
 	std::cout << std::endl << tr->weightPriority("Appl") << std::endl;
 
 	Autocomplete ac;
+	Searchbar sb;
 	while(true)
-	ac.ACWordInput();
+	sb.SBWordInput();
 
 
 

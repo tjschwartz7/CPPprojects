@@ -1,7 +1,6 @@
 
 #include "autocompletion.h"
 #include "stdin.h"
-#include "vector"
 #include <string>
 
 void Autocomplete::ACWordInput() {

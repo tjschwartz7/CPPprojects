@@ -12,4 +12,4 @@ private:
 	Trie words;
 };
 
-#endif // !DATASTRUCTURES_H
+#endif // !AUTOCOMPLETION_H
