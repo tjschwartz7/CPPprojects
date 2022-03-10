@@ -1,7 +1,7 @@
 #include "stdin.h"
 #include "sorting.h"
 #include "DataStructures.h"
-
+#include "autocompletion.h"
 
 int main() {
 	/*cout << setw(10) << left << "Dog Age" << "|";
@@ -50,7 +50,16 @@ int main() {
 
 	//Returns "Applying" with weight=6
 	std::cout << std::endl << tr->weightPriority("Appl") << std::endl;
+
+	Autocomplete ac;
+	while(true)
+	ac.ACWordInput();
+
+
+
 	return 0;
+
+
 }
 
 void NumBitsDif(int word1, int word2) {

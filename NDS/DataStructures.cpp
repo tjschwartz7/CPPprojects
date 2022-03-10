@@ -24,7 +24,7 @@ TrieNode::TrieNode() {
 	for (int i = 0; i <= 26; i++) {
 		children[i] = nullptr;
 	}
-	weight = 0;
+	weight = 1;
 	word = '0';
 }
 
@@ -82,8 +82,9 @@ void Trie::printChild(TrieNode* node) {
 	return;
 }
 
-TrieNode* getMaxWeight(TrieNode* node, TrieNode* maxWeight) {
-	if ((node->children[0] != nullptr) && node->children[0]->weight > maxWeight->weight) {
+TrieNode* getMaxWeight(TrieNode* node, TrieNode *maxWeight) {
+	//std::cout << "Max-weight word before: " << node->word << std::endl;
+	if ((node->children[0] != nullptr) && node->children[0]->weight >= maxWeight->weight) {
 		maxWeight->weight = node->children[0]->weight;
 		maxWeight->word = node->word;
 		std::cout << " String-Weight: " << maxWeight->word << " - " << maxWeight->weight << std::endl;
@@ -92,18 +93,23 @@ TrieNode* getMaxWeight(TrieNode* node, TrieNode* maxWeight) {
 	for (int i = 0; i <= 26; i++) {
 		if (node->children[i] != nullptr) maxWeight = getMaxWeight(node->children[i], maxWeight);
 	}
+	//std::cout << "Max-weight node word after: " << node->word << std::endl;
 	return maxWeight;
 }
 
 
 TrieNode* findStringNode(TrieNode* root, std::string s) {
 	TrieNode* node = root;
+	//std::cout << "root->word" << root->word << std::endl;
 	for (char c : s) {
+		//std::cout << "Chars in order: " << c << std::endl;
 		int index = toupper(c) - ('A' - 1);
 		if (index <= 26 && node->children[index] == nullptr) {
 			return nullptr;
 		}
 		node = node->children[index];
+		//Node->word = "old" and s = "o"
+		//std::cout << "Node->word " << node->word << " " << s << " where index= " << index << std::endl;
 		if (node->word == s) return node;
 	}
 	return nullptr;
@@ -111,9 +117,10 @@ TrieNode* findStringNode(TrieNode* root, std::string s) {
 
 std::string Trie::weightPriority(std::string s) {
 	//Search returns the terminal node not the node where the string exists - only returns full words.
+	//std::cout << "String node of: " << s << std::endl;
 	TrieNode* cur = findStringNode(root, s);
 	if (cur == nullptr) return "";
-	cur = getMaxWeight(cur, cur);
+	cur = getMaxWeight(cur, new TrieNode);
 
 
 	return cur->word;

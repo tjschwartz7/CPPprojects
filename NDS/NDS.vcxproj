@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="autocompletion.cpp" />
     <ClCompile Include="DataStructures.cpp" />
     <ClCompile Include="sorting.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="autocompletion.h" />
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="sorting.h" />
     <ClInclude Include="stdin.h" />
