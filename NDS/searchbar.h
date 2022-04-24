@@ -3,7 +3,7 @@
 
 #include "searchbar.h"
 #include <string>
-#include "DataStructures.h"
+#include "Trie.h"
 #include <vector>
 
 class Searchbar {

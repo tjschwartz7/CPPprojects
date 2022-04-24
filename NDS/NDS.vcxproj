@@ -139,15 +139,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="algorithms.cpp" />
     <ClCompile Include="autocompletion.cpp" />
-    <ClCompile Include="DataStructures.cpp" />
+    <ClCompile Include="BST.cpp" />
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Heap.cpp" />
+    <ClCompile Include="huffman.cpp" />
+    <ClCompile Include="PriorityQueue.cpp" />
     <ClCompile Include="searchbar.cpp" />
     <ClCompile Include="sorting.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Trie.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="algorithms.h" />
     <ClInclude Include="autocompletion.h" />
-    <ClInclude Include="DataStructures.h" />
+    <ClInclude Include="BST.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="Heap.h" />
+    <ClInclude Include="huffman.h" />
+    <ClInclude Include="LL.h" />
+    <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="Trie.h" />
     <ClInclude Include="searchbar.h" />
     <ClInclude Include="sorting.h" />
     <ClInclude Include="stdin.h" />

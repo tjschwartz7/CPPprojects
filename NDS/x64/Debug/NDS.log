@@ -1,2 +1,6 @@
-﻿  searchbar.cpp
+﻿  Source.cpp
+C:\Users\tjsch\source\repos\NDS\NDS\Graph.h(16,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\tjsch\source\repos\NDS\NDS\Graph.h(16,15): warning C4056: overflow in floating-point constant arithmetic
+C:\Users\tjsch\source\repos\NDS\NDS\algorithms.h(12,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\tjsch\source\repos\NDS\NDS\algorithms.h(12,1): warning C4056: overflow in floating-point constant arithmetic
   NDS.vcxproj -> C:\Users\tjsch\source\repos\NDS\x64\Debug\NDS.exe

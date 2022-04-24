@@ -3,7 +3,7 @@
 
 #include "autocompletion.h"
 #include <string>
-#include "DataStructures.h"
+#include "Trie.h"
 
 class Autocomplete {
 public:
