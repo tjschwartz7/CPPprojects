@@ -13,11 +13,22 @@
 using namespace std;
 int main() {
 	huffmanDecoding hd;
-	std::string codes = hd.HuffmanCompress("Secret compartment of my secret box");
+	std::string codes = hd.HuffmanCompress("AAATCCGAAGCCACATGGCA");
 
 	std::string output = hd.HuffmanDecompress(codes, hd.root);
 	cout << "Codes: " << codes << " Output: " << output << endl;
+	cout << "Codes length: " << codes.length() << " Output string size: " << output.length() << endl;
+	cout << "Bits to character ratio: " << codes.length() / output.length() << endl;
+	cout << "Standard bit representation no compression: " << output.length() * 8 << endl;
 
+	Algos al;
+	cout << al.ShuntingYard("2*2-3-3+7") << endl;
+	cout << al.ShuntingYard("2-1*9+8-3") << endl;
+	cout << al.ShuntingYard("2+2*4") << endl;
+	cout << al.ShuntingYard("2+2*4^2") << endl;
+	cout << al.LongestCommonSubstring("CTCAAG", "CAAG") << endl;
+	cout << al.DynamicLongestCommonSubstring("CTCAAG", "CAAG") << endl;
+	cout << al.FibonacciNumber(24) << endl;
 	/*cout << setw(10) << left << "Dog Age" << "|";
 	cout << setw(12) << right << "Human Age" << endl;
 	cout << setfill('-') << setw(23) << "" << endl;

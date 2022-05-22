@@ -142,6 +142,7 @@
     <ClCompile Include="algorithms.cpp" />
     <ClCompile Include="autocompletion.cpp" />
     <ClCompile Include="BST.cpp" />
+    <ClCompile Include="BTree.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="huffman.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="algorithms.h" />
     <ClInclude Include="autocompletion.h" />
     <ClInclude Include="BST.h" />
+    <ClInclude Include="BTree.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="huffman.h" />

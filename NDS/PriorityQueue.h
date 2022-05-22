@@ -3,12 +3,13 @@
 #include "stdin.h"
 #include <deque>
 #include "Heap.h"
+#include <queue>
 
 template <class T>
 class PriorityQueue {
 public:
 	std::deque<T> queue;
-
+//	std::list<T> queue;
 	void enqueue(T val);
 	T dequeue();
 	T peek();
@@ -37,7 +38,7 @@ void PriorityQueue<T>::enqueue(T val) {
 	}
 	for (int i = 0; i < queue.size(); i++) {
 		if (val < queue[i]) {
-			queue.insert(queue.begin() + i, val);
+			queue.emplace(queue.begin() + i, val);
 			return;
 		}
 	}

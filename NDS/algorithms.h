@@ -2,6 +2,8 @@
 
 #include "Graph.h"
 #include "PriorityQueue.h"
+#include <vector>
+#include<map>
 
 class Algos {
 public:
@@ -53,4 +55,8 @@ public:
 		}
 	}
 
+	std::string LongestCommonSubstring(std::string str1, std::string str2);
+	std::string DynamicLongestCommonSubstring(std::string str1, std::string str2);
+	int FibonacciNumber(int termIndex);
+	std::string ShuntingYard(std::string infixString);
 };

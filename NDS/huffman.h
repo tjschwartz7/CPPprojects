@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include <string>
+#include<vector>
 #include "PriorityQueue.h"
 
 
@@ -9,8 +10,8 @@
 
 class HuffmanTree {
 public:
-	bool operator>=(const HuffmanTree& h) { return this->frequency >= h.frequency; }
-	bool operator<(const HuffmanTree& h) { return this->frequency < h.frequency; }
+	bool operator>=(const HuffmanTree& h) { return this->frequency <= h.frequency; }
+	bool operator<(const HuffmanTree& h) { return this->frequency > h.frequency; }
 	int frequency;
 	char character;
 	HuffmanTree() {
@@ -71,4 +72,12 @@ public:
 	std::string HuffmanDecompress(std::string compressedString, HuffmanTree* treeRoot);
 	std::string HuffmanCompress(std::string inputString);
 
+};
+
+class FreqComp {
+public:
+	bool operator ()(const HuffmanTree* left, const HuffmanTree* right) const
+	{
+		return left->frequency > right->frequency;
+	}
 };
