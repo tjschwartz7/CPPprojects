@@ -88,10 +88,10 @@ std::string Algos::ShuntingYard(std::string infixString) {
 
             while (!sStack.empty() && precedence[sStack.back()] >= precedence[c]) {
                 sQueue.emplace(sStack.back());
-                std::cout << "Queue push stack back: " << sStack.back() << std::endl;
+                //std::cout << "Queue push stack back: " << sStack.back() << std::endl;
                 sStack.pop_back();
             }
-            std::cout << "Stack push: " << c << std::endl;
+            //std::cout << "Stack push: " << c << std::endl;
             sStack.push_back(c);
             
             break;
@@ -101,7 +101,7 @@ std::string Algos::ShuntingYard(std::string infixString) {
         case ')':
             while (!sStack.empty() && sStack.back() != '(') {
                 sQueue.emplace(sStack.back());
-                std::cout << "Queue push stack back: " << sStack.back() << std::endl;
+                //std::cout << "Queue push stack back: " << sStack.back() << std::endl;
                 sStack.pop_back();
             }
             sStack.pop_back();
@@ -109,7 +109,7 @@ std::string Algos::ShuntingYard(std::string infixString) {
         default:
             if (c - '0' < 10) {
                 sQueue.emplace(c);
-                std::cout << "Queue emplace number: " << c << std::endl;
+                //std::cout << "Queue emplace number: " << c << std::endl;
             }
 
             break;
@@ -126,6 +126,32 @@ std::string Algos::ShuntingYard(std::string infixString) {
         output += sQueue.front();
         sQueue.pop();
     }
-    std::cout << "OUTPUT: " << output << std::endl;
     return output;
+}
+
+std::string Algos::scramble(std::string bits, int operations, double key) {
+    int n = 0;
+    for (int i = 0; i < bits.size(); i++) bits[i]+=key;
+    while (n < operations) {
+        if(n % 2 == 0)
+            bits[n % bits.size()] += key;
+        else bits[n % bits.size()] = bits[n % bits.size()] + key + n;
+        n++;
+    }
+    for (int j = 0; j < rand() % bits.size() + 7500; j++) {
+        bits += (char)rand() % 255;
+    }
+    return bits;
+}
+
+std::string Algos::descramble(std::string bits, int operations, int key, int size) {
+    int n = 0;
+    while (n < operations) {
+        if (n % 2 == 0)
+            bits[n % size] -= key;
+        else bits[n % size] = bits[n % size] - key - n;
+        n++;
+    }
+    for (int i = 0; i < size; i++) bits[i]-=key;
+    return bits.substr(0, size);
 }

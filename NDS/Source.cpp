@@ -18,7 +18,7 @@ int main() {
 	std::string output = hd.HuffmanDecompress(codes, hd.root);
 	cout << "Codes: " << codes << " Output: " << output << endl;
 	cout << "Codes length: " << codes.length() << " Output string size: " << output.length() << endl;
-	cout << "Bits to character ratio: " << codes.length() / output.length() << endl;
+	cout << "Bits to character ratio: " << codes.length() / (double)output.length() << endl;
 	cout << "Standard bit representation no compression: " << output.length() * 8 << endl;
 
 	Algos al;
@@ -29,6 +29,9 @@ int main() {
 	cout << al.LongestCommonSubstring("CTCAAG", "CAAG") << endl;
 	cout << al.DynamicLongestCommonSubstring("CTCAAG", "CAAG") << endl;
 	cout << al.FibonacciNumber(24) << endl;
+	std::string scrambledLetters = al.scramble(codes, 503, 3);
+	cout << scrambledLetters << endl;
+	cout << al.descramble(scrambledLetters, 503, 3, codes.size()) << endl;
 	/*cout << setw(10) << left << "Dog Age" << "|";
 	cout << setw(12) << right << "Human Age" << endl;
 	cout << setfill('-') << setw(23) << "" << endl;

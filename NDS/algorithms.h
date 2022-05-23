@@ -5,6 +5,7 @@
 #include <vector>
 #include<map>
 
+
 class Algos {
 public:
 	void DijkstraShortestPath(ALVertex startV, AdjacencyGraph* ag) {
@@ -59,4 +60,7 @@ public:
 	std::string DynamicLongestCommonSubstring(std::string str1, std::string str2);
 	int FibonacciNumber(int termIndex);
 	std::string ShuntingYard(std::string infixString);
+
+	std::string scramble(std::string bits, int operations, double key);
+	std::string descramble(std::string bits, int operations, int key, int size);
 };
