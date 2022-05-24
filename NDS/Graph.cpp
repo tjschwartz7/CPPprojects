@@ -281,3 +281,4 @@ void Digraph::insertEdge(char origin, char pointsTo, int weight) {
 	ALVertex* av2 = getNode(pointsTo);
 	av1->ALInsert(pointsTo, weight);
 }
+

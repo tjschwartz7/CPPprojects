@@ -155,3 +155,72 @@ std::string Algos::descramble(std::string bits, int operations, int key, int siz
     for (int i = 0; i < size; i++) bits[i]-=key;
     return bits.substr(0, size);
 }
+
+std::vector<int> Algos::bitonicSequence(std::vector<int> set) {
+   // for (int i = 0; i < set.size(); i++) {
+
+   // }
+    return set;
+}
+
+std::string Algos::BinaryToHexConverter(std::string bits) {
+    BHConversion converter;
+    if (bits[0] == '0' && bits[1] == 'b') bits = bits.substr(2, bits.size()-2);
+    //std::cout << "Size: " << bits.size() << std::endl;
+    //std::cout << "Current bits: " << bits << std::endl;
+    // O(3) = O(1) Big O
+    while(bits.size() % 4 != 0) {
+        bits = '0' + bits;
+        //std::cout << "Bits: " << bits << std::endl;
+    }
+    std::string output = "";
+    //O(k / 4) (Size of string / 4) = O(k) Big O
+    for (int i = 0; i < bits.size(); i += 4) {
+        //std::cout << "Counter: " << i << std::endl;
+        //std::cout << "Substring: " << bits.substr(i, i + 4) << std::endl;
+        std::string fourBit = bits.substr(i, 4);
+        //std::cout << "Four Bits: " << fourBit << std::endl;
+        output += converter.chartBH[fourBit];
+
+    }
+    return "0x" + output;
+}
+
+std::string Algos::HexToBinaryConverter(std::string hex) {
+    if (hex[0] == '0' && hex[1] == 'x') hex = hex.substr(2, hex.size()-2);
+    BHConversion converter;
+    //std::cout << "Size: " << bits.size() << std::endl;
+    std::string output = "";
+    //O(k / 4) (Size of string / 4) = O(k) Big O
+    for (int i = 0; i < hex.size(); i++) {
+        //std::cout << bits.substr(i, i + 4) << std::endl;
+        output += converter.chartHB[hex[i]];
+    }
+    return "0b" + output;
+}
+
+std::string createRandomBinary() {
+    int size = rand() % 255 * 4;
+    std::string bits = "";
+    for (int i = 0; i < size; i++) {
+        int randomBit = rand() % 2;
+        (randomBit == 1) ? bits += '1' : bits += '0';
+    }
+    return "0b" + bits;
+}
+
+bool Algos::HexBinaryConversionTester(int numTests) {
+    srand(time(NULL));
+    auto t1 = std::chrono::system_clock::now();
+    for (int i = 0; i < numTests; i++) {
+        std::string randBits = createRandomBinary();
+        std::string hex = BinaryToHexConverter(randBits);
+        std::string outputBinary = HexToBinaryConverter(hex);
+        //std::cout << randBits << " " << hex << " Outputs " << outputBinary << std::endl;
+        if (outputBinary != randBits) return false;
+    }
+    auto t2 = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = t2 - t1;
+    std::cout << "Elapsed time during " << numTests << " tests: " << elapsed_seconds.count() << "s" << std::endl;
+    return true;
+}

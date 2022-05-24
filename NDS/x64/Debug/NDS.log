@@ -1,9 +1,6 @@
-﻿  algorithms.cpp
+﻿  Source.cpp
 C:\Users\tjsch\source\repos\NDS\NDS\Graph.h(16,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
 C:\Users\tjsch\source\repos\NDS\NDS\Graph.h(16,15): warning C4056: overflow in floating-point constant arithmetic
-C:\Users\tjsch\source\repos\NDS\NDS\algorithms.h(15,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\tjsch\source\repos\NDS\NDS\algorithms.h(15,1): warning C4056: overflow in floating-point constant arithmetic
-C:\Users\tjsch\source\repos\NDS\NDS\algorithms.cpp(134,52): warning C4244: '+=': conversion from 'double' to 'char', possible loss of data
-C:\Users\tjsch\source\repos\NDS\NDS\algorithms.cpp(137,38): warning C4244: '+=': conversion from 'double' to 'char', possible loss of data
-C:\Users\tjsch\source\repos\NDS\NDS\algorithms.cpp(138,66): warning C4244: '=': conversion from 'double' to 'char', possible loss of data
+C:\Users\tjsch\source\repos\NDS\NDS\algorithms.h(28,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\tjsch\source\repos\NDS\NDS\algorithms.h(28,1): warning C4056: overflow in floating-point constant arithmetic
   NDS.vcxproj -> C:\Users\tjsch\source\repos\NDS\x64\Debug\NDS.exe

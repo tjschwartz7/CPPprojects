@@ -29,9 +29,13 @@ int main() {
 	cout << al.LongestCommonSubstring("CTCAAG", "CAAG") << endl;
 	cout << al.DynamicLongestCommonSubstring("CTCAAG", "CAAG") << endl;
 	cout << al.FibonacciNumber(24) << endl;
-	std::string scrambledLetters = al.scramble(codes, 503, 3);
-	cout << scrambledLetters << endl;
-	cout << al.descramble(scrambledLetters, 503, 3, codes.size()) << endl;
+	//std::string scrambledLetters = al.scramble(codes, 503, 3);
+	//cout << scrambledLetters << endl;
+	//cout << al.descramble(scrambledLetters, 503, 3, codes.size()) << endl;
+	std::string hexCode = al.BinaryToHexConverter("111010");
+	cout << hexCode << endl;
+	cout << al.HexToBinaryConverter(hexCode) << endl;
+	cout << al.HexBinaryConversionTester(100000) << endl;
 	/*cout << setw(10) << left << "Dog Age" << "|";
 	cout << setw(12) << right << "Human Age" << endl;
 	cout << setfill('-') << setw(23) << "" << endl;
