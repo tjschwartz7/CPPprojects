@@ -166,6 +166,7 @@
     <ClInclude Include="searchbar.h" />
     <ClInclude Include="sorting.h" />
     <ClInclude Include="stdin.h" />
+    <ClInclude Include="UnboundedArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

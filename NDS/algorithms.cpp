@@ -194,7 +194,7 @@ std::string Algos::HexToBinaryConverter(std::string hex) {
     //O(k / 4) (Size of string / 4) = O(k) Big O
     for (int i = 0; i < hex.size(); i++) {
         //std::cout << bits.substr(i, i + 4) << std::endl;
-        output += converter.chartHB[hex[i]];
+        output += converter.chartHB[toupper(hex[i])];
     }
     return "0b" + output;
 }
@@ -223,4 +223,69 @@ bool Algos::HexBinaryConversionTester(int numTests) {
     std::chrono::duration<double> elapsed_seconds = t2 - t1;
     std::cout << "Elapsed time during " << numTests << " tests: " << elapsed_seconds.count() << "s" << std::endl;
     return true;
+}
+
+int Algos::ShuntingYardSolver(std::string postfixInput) {
+    std::vector<int> sStack;
+    int total = 0;
+    int num1;
+    int num2;
+    for (char c : postfixInput) {
+
+        switch (c) {
+        case '+':
+            num1 = sStack.back();
+            sStack.pop_back();
+            num2 = sStack.back();
+            sStack.pop_back();
+            sStack.push_back(num2 + num1);
+            break;
+        case '-':
+            num1 = sStack.back();
+            sStack.pop_back();
+            num2 = sStack.back();
+            sStack.pop_back();
+            sStack.push_back(num2 - num1);
+            break;
+        case '/':
+            num1 = sStack.back();
+            sStack.pop_back();
+            num2 = sStack.back();
+            sStack.pop_back();
+            sStack.push_back(num2 / num1);
+            break;
+        case '*':
+            num1 = sStack.back();
+            sStack.pop_back();
+            num2 = sStack.back();
+            sStack.pop_back();
+            sStack.push_back(num2 * num1);
+            break;
+        case '^':
+            num1 = sStack.back();
+            sStack.pop_back();
+            num2 = sStack.back();
+            sStack.pop_back();
+            sStack.push_back((int)pow(num2, num1));
+            break;
+        default:
+            if (c - '0' < 10) {
+                sStack.push_back(c - '0');
+                //std::cout << "Queue emplace number: " << c << std::endl;
+            }
+
+            break;
+
+        }
+        //for (int j = 0; j < sStack.size(); j++) {
+          //  std::cout << sStack[j] << std::endl;
+        //}
+        //std::cout << std::endl;
+    }
+    if (sStack.empty()) {
+        std::cout << "The stack is empty! This means something went terribly wrong with the calculation. Sorry about that." << std::endl;
+        return 0;
+    }
+    else
+    return sStack.back();
 }

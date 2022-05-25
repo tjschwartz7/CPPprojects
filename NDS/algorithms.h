@@ -80,4 +80,5 @@ public:
 	std::string BinaryToHexConverter(std::string bits);
 	std::string HexToBinaryConverter(std::string hex);
 	bool HexBinaryConversionTester(int numTests);
+	int ShuntingYardSolver(std::string postfixInput);
 };
