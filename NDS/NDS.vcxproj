@@ -146,6 +146,7 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="huffman.cpp" />
+    <ClCompile Include="MLAlgorithms.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
     <ClCompile Include="searchbar.cpp" />
     <ClCompile Include="sorting.cpp" />
@@ -157,10 +158,12 @@
     <ClInclude Include="autocompletion.h" />
     <ClInclude Include="BST.h" />
     <ClInclude Include="BTree.h" />
+    <ClInclude Include="cplearn.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="huffman.h" />
     <ClInclude Include="LL.h" />
+    <ClInclude Include="MLAlgorithms.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="Trie.h" />
     <ClInclude Include="searchbar.h" />

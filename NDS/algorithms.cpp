@@ -289,3 +289,135 @@ int Algos::ShuntingYardSolver(std::string postfixInput) {
     else
     return sStack.back();
 }
+
+int Algos::hammingWeight(uint32_t n) {
+    int count = 0;
+    int bits;
+    if (n > 0)
+        bits = log2(n);
+    while (n > 0) {
+        if (n - pow(2, bits) >= 0) {
+            n -= pow(2, bits);
+            count++;
+        }
+        bits--;
+    }
+
+    return count;
+}
+
+int Algos::hammingDistance(int x, int y) {
+    int max = (x > y) ? x : y;
+    int p = log2(max) + 1;
+    int bitDif = 0;
+    while (x > 0 || y > 0) {
+        if (x - pow(2, p) >= 0 && y - pow(2, p) >= 0) {
+            x -= pow(2, p);
+            y -= pow(2, p);
+        }
+        else if (x - pow(2, p) >= 0) {
+            x -= pow(2, p);
+            bitDif++;
+        }
+        else if (y - pow(2, p) >= 0) {
+            y -= pow(2, p);
+            bitDif++;
+        }
+
+        p--;
+    }
+    return bitDif;
+}
+
+int reverse(int x) {
+    std::string num = std::to_string(x);
+    int i = 0;
+    int j = num.size() - 1;
+    while (j > i) {
+        if (num[i] != '-') {
+            char temp = num[i];
+            num[i] = num[j];
+            num[j] = temp;
+            i++;
+            j--;
+        }
+        else i++;
+    }
+    try {
+        int output = std::stoi(num);
+        return output;
+    }
+    catch (std::exception ex) {
+        return 0;
+    }
+
+
+}
+
+bool isValid(std::string s) {
+    std::vector<char> pStack;
+    for (char c : s) {
+        if (pStack.size() == 0 && (c == ']' || c == '}' || c == ')'))
+            return false;
+        if ((c == '}' && pStack.back() == '{') ||
+            (c == ')' && pStack.back() == '(') ||
+            (c == ']' && pStack.back() == '[')) {
+            //cout << "pop";
+            try {
+                pStack.pop_back();
+            }
+            catch (std::exception ex) {
+                return false;
+            }
+        }
+        else if (c != ' ') {
+            pStack.emplace_back(c);
+            //cout << "push";
+        }
+    }
+
+
+    if (pStack.size() == 0)
+        return true;
+    else return false;
+}
+
+int numberOfSteps(int num) {
+    int count = 0;
+    while (num != 0) {
+        if (num % 2 == 0) num /= 2;
+        else num -= 1;
+        count++;
+    }
+    return count;
+}
+
+int countOperations(int num1, int num2) {
+    int count = 0;
+    while (num1 != 0 && num2 != 0) {
+        count++;
+        if (num1 >= num2) {
+            num1 -= num2;
+        }
+        else {
+            num2 -= num1;
+        }
+    }
+    return count;
+}
+
+std::string optimalDivision(std::vector<int>& nums) {
+    std::string expr = "";
+    int index = 1;
+    for (int num : nums) {
+        expr += std::to_string(num);
+        if (index != nums.size())
+            expr += "/";
+        if (index == 1 && index != nums.size() && nums.size() > 2)
+            expr += "(";
+        index++;
+    }
+    if (nums.size() > 2)
+        expr += ")";
+    return expr;
+}

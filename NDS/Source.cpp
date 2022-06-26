@@ -13,11 +13,20 @@
 #include "huffman.h"
 #include <chrono> 
 #include "UnboundedArray.h"
+#include "cplearn.h"
 
 using namespace std;
 void terminal();
 
 int main() {
+
+	cplearn<int> ml;
+	cmat<int> mat(2,3);
+	
+
+
+
+
 	terminal();
 	huffmanDecoding hd;
 	std::string codes = hd.HuffmanCompress("ACTG");

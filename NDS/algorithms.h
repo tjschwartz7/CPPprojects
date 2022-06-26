@@ -81,4 +81,6 @@ public:
 	std::string HexToBinaryConverter(std::string hex);
 	bool HexBinaryConversionTester(int numTests);
 	int ShuntingYardSolver(std::string postfixInput);
+	int hammingWeight(uint32_t n);
+	int hammingDistance(int x, int y);
 };
